@@ -1,0 +1,101 @@
+.main-container {
+  position: relative;
+  width: 80%;
+  margin: 3rem auto; }
+  .main-container * {
+    box-sizing: border-box; }
+
+.main-heading {
+  color: white;
+  font-family: 'Amaranth', sans-serif; }
+
+.header::after {
+  content: "";
+  clear: both;
+  display: table; }
+
+.search-result {
+  float: left; }
+
+.page-header {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  float: right; }
+  .page-header .main-heading {
+    display: inline-block;
+    margin-right: 1em; }
+
+@media screen and (max-width: 1200px) {
+  .search-result {
+    float: none; }
+
+  .page-header {
+    float: none;
+    position: static; } }
+.grid {
+  display: grid;
+  justify-content: space-evenly;
+  column-gap: 2rem;
+  row-gap: 4rem;
+  grid-template-columns: repeat(auto-fill, 185px); }
+
+.item-card {
+  width: 185px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 0px 0px 3px 0 rgba(128, 128, 128, 0.5);
+  transition: box-shadow 0.2s; }
+
+.item-card:hover {
+  box-shadow: 0px 0px 15px 0 rgba(128, 128, 128, 0.5); }
+
+.item-img-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 279px;
+  cursor: pointer; }
+  .item-img-container .item-img {
+    height: 100%;
+    transition: opacity(0.2s); }
+  .item-img-container .item-img:hover {
+    opacity: 0.7; }
+  .item-img-container .item-not-found {
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+    text-align: center;
+    background-color: rgba(33, 54, 54, 0.5);
+    padding: 1.5em;
+    position: relative;
+    transition: background-color(0.2s); }
+    .item-img-container .item-not-found span {
+      display: inline-block;
+      color: lightgrey;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+  .item-img-container .item-not-found:hover {
+    background-color: rgba(33, 54, 54, 0.35); }
+
+.item-text {
+  width: 100%;
+  flex: 1;
+  background-color: rgba(33, 54, 54, 0.85);
+  padding: 0.5em; }
+
+.item-name-heading, .item-type-heading, .item-cta-heading {
+  margin: 0.25em;
+  color: white; }
+
+.item-name-heading span:hover {
+  cursor: pointer;
+  color: lightsalmon; }
+
+.item-type-heading {
+  font-style: italic; }
+
+/*# sourceMappingURL=mainSection.css.map */

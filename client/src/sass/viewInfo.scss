@@ -1,0 +1,20 @@
+@import "viewInfoOverview";
+@import "viewInfoGallery";
+
+$view_info_container_width: 80%;
+
+.view-info {
+    width: $view_info_container_width;
+    margin: auto;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+
+    
+    * {
+        box-sizing: border-box;
+    }  
+}
+
+
+
+

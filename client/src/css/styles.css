@@ -1,0 +1,133 @@
+.nav-top {
+  overflow: hidden;
+  background-color: #022F40;
+  width: 100%;
+  position: sticky;
+  z-index: 1000;
+  top: 0; }
+  .nav-top * {
+    box-sizing: border-box; }
+  .nav-top .nav-title {
+    float: left;
+    display: block;
+    color: #f3ff4f;
+    text-align: left;
+    padding: 0.8em 0;
+    text-decoration: none;
+    font-size: 1.7em;
+    font-weight: bold;
+    margin-left: 10%;
+    width: 30%;
+    font-family: 'Amaranth', sans-serif; }
+  .nav-top .nav-search-submit {
+    margin-right: -39.8%;
+    margin-top: 1.76em;
+    height: 2.56em;
+    width: 6%;
+    float: right;
+    background-image: linear-gradient(gainsboro, #a4a4a4); }
+  .nav-top input {
+    margin-right: 16%;
+    width: 34%;
+    float: right;
+    padding: 0.16em 0.5em 0.16em 0.5em;
+    border: 1px solid grey;
+    margin-top: 1.05em;
+    font-size: 1.35em;
+    font-family: 'Amaranth', sans-serif; }
+  @media screen and (max-width: 800px) {
+    .nav-top .nav-title {
+      float: none;
+      display: block;
+      color: #f3ff4f;
+      text-align: center;
+      padding: 0.8em 0;
+      text-decoration: none;
+      font-size: 1.7em;
+      font-weight: bold;
+      width: 100%;
+      margin-left: 0;
+      font-family: 'Amaranth', sans-serif; }
+    .nav-top .nav-search-submit {
+      margin-right: -76.5%;
+      margin-top: 0em;
+      height: 2.56em;
+      width: 12%;
+      float: right;
+      background-image: linear-gradient(gainsboro, #a4a4a4); }
+    .nav-top input {
+      margin-right: 22.5%;
+      width: 65%;
+      float: right;
+      padding: 0.16em 0.5em 0.16em 0.5em;
+      border: 1px solid grey;
+      margin-top: 0em;
+      margin-bottom: 1.0em;
+      font-size: 1.35em;
+      font-family: 'Amaranth', sans-serif; } }
+
+.main-container {
+  position: relative;
+  width: 80%;
+  margin: 3rem auto; }
+
+.main-heading {
+  color: white;
+  font-family: 'Amaranth', sans-serif; }
+
+.header::after {
+  content: "";
+  clear: both;
+  display: table; }
+
+.search-result {
+  float: left; }
+
+.page-header {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  float: right; }
+  .page-header .main-heading {
+    display: inline-block;
+    margin-right: 1em; }
+
+@media screen and (max-width: 1200px) {
+  .search-result {
+    float: none; }
+
+  .page-header {
+    float: none;
+    position: static; } }
+.grid {
+  display: grid;
+  column-gap: 3rem;
+  row-gap: 4rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+
+.item-card {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-family: 'Open Sans', sans-serif; }
+
+.item-img {
+  height: 20rem;
+  line-height: 20rem;
+  color: lightgrey;
+  font-size: 1.5rem;
+  text-align: center; }
+  .item-img img {
+    height: 100%; }
+
+.item-name-heading, .item-type-heading, .item-cta-heading {
+  margin: 0.25em;
+  color: white; }
+
+body {
+  background-image: url("../images/paul-volkmer-unsplash.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; }
+
+/*# sourceMappingURL=styles.css.map */

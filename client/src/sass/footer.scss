@@ -1,0 +1,51 @@
+.footer {
+    width: 100%;
+    background-color: #022F40; //aka primary nav bg color;
+    padding: 0.25em 0; 
+    
+    margin-top: auto;
+}
+
+.footer_container {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    @media screen and (min-width:600px) {
+        flex-direction: row;
+        align-items: center;
+        
+    }
+
+    
+}
+
+#creator_notice {
+    font-size: 1em;
+    flex-basis: 30%;
+    color: white;
+    //border: 1px solid green;
+}
+
+#tmdb_notice {
+    //border: 1px solid yellow;
+    font-size: 0.875em;
+    padding: 0 1em;
+    color: white;
+}
+
+#tmdb_attribution {
+    flex-basis: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    //border: 1px solid orange;
+}
+
+#tmdb_logo {
+    width: 60px;
+    height: 30px;
+}
+

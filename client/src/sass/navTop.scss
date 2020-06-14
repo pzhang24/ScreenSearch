@@ -1,0 +1,101 @@
+$primary_bg_color: #022F40;
+$primary_title_color: rgb(243, 255, 79);
+$input_border: 1px solid grey;
+
+.nav-top {
+    overflow: hidden;
+    background-color: $primary_bg_color;
+    width:100%;
+    position:sticky;
+    z-index: 1;
+    top:0;
+    
+    * {
+        box-sizing: border-box;
+        z-index: inherit;
+    }
+
+    .nav-title {
+        float:left;
+        display:block;
+        color: $primary_title_color;
+        text-align: left;
+        padding: 0.8em 0;
+        text-decoration: none;
+        font-size: 1.7em;
+        font-weight: bold;
+        margin-left: 10%;
+        width: 30%;
+        font-family: 'Amaranth', sans-serif;
+        //border:1px solid red;
+    }
+
+    .nav-search-submit {
+        margin-right: -39.8%;
+        margin-top: 1.76em;
+        height: 2.56em;
+        width:6%;
+        float:right;
+        z-index: 2;
+        background-image: linear-gradient(rgb(220, 220, 220), rgb(164, 164, 164));
+    }
+
+    
+
+    input {
+        margin-right: 16%;
+        width:34%;
+        float:right;
+        padding: 0.16em 0.5em 0.16em 0.5em;
+        border: $input_border;
+        //border-radius: 0.5em;
+        margin-top: 1.05em;
+        font-size: 1.35em;
+        font-family: 'Amaranth', sans-serif;
+    }
+
+    //mobile
+    @media screen and (max-width:800px) {
+        .nav-title {
+            float:none;
+            display:block;
+            color: $primary_title_color;
+            text-align: center;
+            padding: 0.8em 0;
+            text-decoration: none;
+            font-size: 1.7em;
+            font-weight: bold;
+            width: 100%;
+            margin-left: 0;
+            font-family: 'Amaranth', sans-serif;
+            //border:1px solid red;
+        }
+
+        .nav-search-submit {
+            margin-right: -76.5%;
+            margin-top: 0em;
+            height: 2.56em;
+            width:12%;
+            float:right;
+            background-image: linear-gradient(rgb(220, 220, 220), rgb(164, 164, 164));
+        }
+
+        input {
+            margin-right: 22.5%;
+            width:65%;
+            float:right;
+            padding: 0.16em 0.5em 0.16em 0.5em;
+            border: $input_border;
+            //border-radius: 0.5em;
+            margin-top: 0em;
+            margin-bottom:1.0em;
+            font-size: 1.35em;
+            font-family: 'Amaranth', sans-serif;
+        }
+    }
+
+}
+
+.nav-search-submit:hover {
+    cursor: pointer;
+}
