@@ -16,22 +16,24 @@ const TVInfo = (props) => {
     var [crewGallery, setCrewGallery] = useState([]);
 
     useEffect(() => {
+        let mounted = true;
         axios.get(`/api/tv/${props.tvDetails.id}/credits`)
             .then(res => {
-                console.log(res);
-                //console.log(res.data.cast);
-                //console.log(res.data.crew);
-                //console.log(processGallery(res.data.cast, "cast"));
-                setCastGallery(processCreditsGallery(res.data.cast, "tv", "cast"));
-                setCrewGallery(processCreditsGallery(res.data.crew, "tv", "crew"));
+                if (mounted) {
+                    console.log(res);
+                    setCastGallery(processCreditsGallery(res.data.cast, "tv", "cast"));
+                    setCrewGallery(processCreditsGallery(res.data.crew, "tv", "crew"));
+                }
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
+
+        return () => mounted = false;
     }, [props.tvDetails.id]);
     
     return (
-        <div className="view-info">
+        <div>
             <h1>{props.tvDetails.name}</h1>
 
             <div className="view-info-overview">

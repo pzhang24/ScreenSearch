@@ -1,6 +1,7 @@
 import React from 'react';
 import NavTop from './NavTop/NavTop';
 import MainHeader from './MainList/MainHeader';
+import MainFooter from './MainList/MainFooter';
 import Axios from 'axios';
 import MainList from './MainList/MainList';
 import ViewInfo from './ViewInfo/ViewInfo';
@@ -115,10 +116,10 @@ class App extends React.Component {
   }
 
   //Displays more information about an item (movie, show, person) when user requests to view more info
-  viewInfo = (newID, newType) => {
+  viewInfo = (newID, newType, newName) => {
     console.log("Viewing Info!")
     this.setState((state) => (
-      {viewItemStack: [...state.viewItemStack, {id: newID, type: newType}]}));
+      {viewItemStack: [...state.viewItemStack, {id: newID, type: newType, name: newName}]}));
   }
 
   //Closes components displaying more information about the current item (movie, show, person) 
@@ -130,9 +131,13 @@ class App extends React.Component {
 
   render() {
 
-    const currentItem = this.state.viewItemStack[this.state.viewItemStack.length - 1];
+    const itemStack = this.state.viewItemStack;
+    const currentItem = itemStack[itemStack.length - 1];
+    const prevItem = itemStack[itemStack.length - 2];
     const currentItemType = currentItem ? currentItem.type : undefined;
     const currentItemId = currentItem ? currentItem.id : undefined;
+    const prevItemName = prevItem ? prevItem.name : undefined;
+ 
     console.log("Current Item Type is: " + currentItemType);
     console.log("Current Item Id is: " + currentItemId);
 
@@ -158,7 +163,8 @@ class App extends React.Component {
         );
     } else if (currentItemType && currentItemId) {
         content = (<div className="main">
-          <ViewInfo type={currentItemType} id={currentItemId} viewInfo={this.viewInfo} closeInfo={this.closeInfo}/>
+          <ViewInfo type={currentItemType} id={currentItemId} prevName={prevItemName} 
+            origSearch={this.state.savedSearchTerm} viewInfo={this.viewInfo} closeInfo={this.closeInfo}/>
           </div>
         );
     } else {
@@ -167,6 +173,8 @@ class App extends React.Component {
             <MainHeader searchResultMsg = {this.state.searchResultMsg} currentPage = {this.state.currentPage} 
             totalPages = {this.state.totalPages} pageChange={this.pageChange}/>
             <MainList results={this.state.results} viewInfo={this.viewInfo}/>
+            <MainFooter  currentPage = {this.state.currentPage} 
+            totalPages = {this.state.totalPages} pageChange={this.pageChange}/>
           </div>
         );
     }

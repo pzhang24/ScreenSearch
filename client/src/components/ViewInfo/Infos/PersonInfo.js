@@ -16,22 +16,25 @@ const PersonInfo = (props) => {
     var [crewGallery, setCrewGallery] = useState([]);
 
     useEffect(() => {
+        let mounted = true;
         axios.get(`/api/person/${props.personDetails.id}/combined_credits`)
             .then(res => {
-                console.log(res);
-                //console.log(res.data.cast);
-                //console.log(res.data.crew);
-                //console.log(processGallery(res.data.cast, "cast"));
-                setCastGallery(processCreditsGallery(res.data.cast, "person", "cast"));
-                setCrewGallery(processCreditsGallery(res.data.crew, "person", "crew"));
+                if (mounted) {
+                    console.log(res);
+                    setCastGallery(processCreditsGallery(res.data.cast, "person", "cast"));
+                    setCrewGallery(processCreditsGallery(res.data.crew, "person", "crew"));
+                }
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
+        
+        return () => mounted = false;
+        
     }, [props.personDetails.id]);
 
     return (
-        <div className="view-info">
+        <div>
             <h1>{props.personDetails.name}</h1>
             
             <div className="view-info-overview">

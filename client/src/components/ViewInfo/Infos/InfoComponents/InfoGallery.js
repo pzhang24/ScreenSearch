@@ -5,7 +5,7 @@ import InfoGalleryCard from './InfoGalleryCard';
     Props:
         itemList: array with a list of objects to display 
             Objects contain values for the following names:
-                img_path, maintext, subtext
+                id, type, img_path, name, subtext
         title: title of the InfoGallery
 
 */

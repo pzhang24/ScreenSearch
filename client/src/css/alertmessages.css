@@ -1,0 +1,7 @@
+.loading_message, .error_message, .welcome_message {
+  width: 80%;
+  margin: 2em auto;
+  text-align: center;
+  color: white; }
+
+/*# sourceMappingURL=alertmessages.css.map */

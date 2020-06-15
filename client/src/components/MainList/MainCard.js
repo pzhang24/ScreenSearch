@@ -12,7 +12,7 @@ import MainCardType from './MainCardType';
 const MainCard = (props) => {
     return (
         <div className="item-card" >
-            <div className="item-img-container" onClick={() => props.viewInfo(props.id, props.type)}>
+            <div className="item-img-container" onClick={() => props.viewInfo(props.id, props.type, props.name)}>
                 {
                     //Check if a profile image for this person exists
                     props.img == null ? <p className="item-not-found"><span>No Image Found</span></p>
@@ -22,7 +22,7 @@ const MainCard = (props) => {
             </div>
             <div className="item-text">
                 <div className="item-name">
-                    <h3 className="item-name-heading" onClick={() => props.viewInfo(props.id, props.type)}>
+                    <h3 className="item-name-heading" onClick={() => props.viewInfo(props.id, props.type, props.name)}>
                         <span>{props.name}</span>
                     </h3>
                 </div>

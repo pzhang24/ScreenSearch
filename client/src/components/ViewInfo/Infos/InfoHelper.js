@@ -18,7 +18,7 @@ export function processObjectArray(array, name) {
 
 //type: either "movie", "tv", or "person"
 //subtype: either "cast" or "crew" -> otherwise returns null
-//RETURN: array of objects with id, type, img_path, maintext, and subtext fields
+//RETURN: array of objects with id, type, img_path, name, and subtext fields
 export function processCreditsGallery(dataArray, type, subtype) {
     switch(type) {
         case "movie":
@@ -30,7 +30,7 @@ export function processCreditsGallery(dataArray, type, subtype) {
                         galleryObj.id = castMember.id;
                         galleryObj.type = 'person';
                         galleryObj.img_path = castMember.profile_path;
-                        galleryObj.maintext = castMember.name;
+                        galleryObj.name = castMember.name;
                         galleryObj.subtext = castMember.character;
                         return galleryObj;
                     });
@@ -40,7 +40,7 @@ export function processCreditsGallery(dataArray, type, subtype) {
                         galleryObj.id = crewMember.id;
                         galleryObj.type = 'person';
                         galleryObj.img_path = crewMember.profile_path;
-                        galleryObj.maintext = crewMember.name;
+                        galleryObj.name = crewMember.name;
                         galleryObj.subtext = crewMember.job;
                         return galleryObj;
                     });
@@ -56,7 +56,7 @@ export function processCreditsGallery(dataArray, type, subtype) {
                         galleryObj.id = castMedia.id;
                         galleryObj.type = castMedia.media_type;
                         galleryObj.img_path = castMedia.poster_path;
-                        galleryObj.maintext = castMedia.title;
+                        galleryObj.name = castMedia.title;
                         galleryObj.subtext = castMedia.character;
                         return galleryObj;
                     });
@@ -66,7 +66,7 @@ export function processCreditsGallery(dataArray, type, subtype) {
                         galleryObj.id = crewMedia.id;
                         galleryObj.type = crewMedia.media_type;
                         galleryObj.img_path = crewMedia.poster_path;
-                        galleryObj.maintext = crewMedia.title;
+                        galleryObj.name = crewMedia.title;
                         galleryObj.subtext = crewMedia.job;
                         return galleryObj;
                     });

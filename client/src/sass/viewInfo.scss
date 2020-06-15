@@ -1,5 +1,6 @@
 @import "viewInfoOverview";
 @import "viewInfoGallery";
+@import "navButton";
 
 $view_info_container_width: 80%;
 
@@ -13,7 +14,19 @@ $view_info_container_width: 80%;
     * {
         box-sizing: border-box;
     }  
+    
 }
+
+.back_button {
+    margin: 2em 0 3em 0;
+    @include nav_button;
+
+
+    i {
+        padding: 0 0.5em 0 0 ;
+    }
+}
+
 
 
 

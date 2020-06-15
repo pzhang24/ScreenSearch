@@ -1,0 +1,10 @@
+@mixin nav_button {
+    padding: 0 1em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    background-color: rgb(4, 185, 118);
+    color: black;
+
+    display: flex;
+    align-items: center;
+}

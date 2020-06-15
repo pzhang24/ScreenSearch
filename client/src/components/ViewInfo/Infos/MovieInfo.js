@@ -10,7 +10,6 @@ import axios from "axios";
 const MovieInfo = (props) => {
 
     //TODO: Some of these fields might be null, use helper method to check whether its null or not.
-    debugger;
     console.log(props.movieDetails);
     var infoSummary = createMovieSummary(props.movieDetails);
 
@@ -18,22 +17,25 @@ const MovieInfo = (props) => {
     var [crewGallery, setCrewGallery] = useState([]);
     
     useEffect(() => {
+        let mounted = true;
+
         axios.get(`/api/movie/${props.movieDetails.id}/credits`)
             .then(res => {
-                console.log(res);
-                //console.log(res.data.cast);
-                //console.log(res.data.crew);
-                //console.log(processGallery(res.data.cast, "cast"));
-                setCastGallery(processCreditsGallery(res.data.cast, "movie", "cast"));
-                setCrewGallery(processCreditsGallery(res.data.crew, "movie", "crew"));
+                if (mounted) {
+                    console.log(res);
+                    setCastGallery(processCreditsGallery(res.data.cast, "movie", "cast"));
+                    setCrewGallery(processCreditsGallery(res.data.crew, "movie", "crew"));
+                }
             })
             .catch(err => {
                 console.log(err);
-            })
+            });
+        
+        return () => mounted = false;
     }, [props.movieDetails.id]);
 
     return (
-        <div className="view-info">
+        <div>
             <h1>{props.movieDetails.title}</h1>
             
             <div className="view-info-overview">

@@ -14,6 +14,10 @@ import LoadingMessage from './../AlertMessages/LoadingMessage';
     type: the type of the item to be viewed, as defined on TMDB 
         (currently our options are 'movie', 'tv', or 'person')
     id: the id of the item to be viewed, as defined on TMDB
+    prevName: the name of the previous item
+    viewInfo:
+    closeInfo:
+    origSearch: 
 */ 
 
 class ViewInfo extends React.Component {
@@ -72,7 +76,6 @@ class ViewInfo extends React.Component {
     }
 
     render() {
-        debugger;
         //If we did not successfully get a response, will need to display an error message.
         if(this.state.error) {
             
@@ -95,21 +98,37 @@ class ViewInfo extends React.Component {
             )
         }
         
+        var infoComponent; 
         switch(this.props.type) {
             case('movie'): 
-                return <MovieInfo movieDetails={this.state.data} 
+                infoComponent = <MovieInfo movieDetails={this.state.data} 
                     viewInfo={this.props.viewInfo} closeInfo={this.props.closeInfo}/>;
+                break;
             case('tv'):
-                return <TVInfo tvDetails={this.state.data}
+                infoComponent = <TVInfo tvDetails={this.state.data}
                     viewInfo={this.props.viewInfo} closeInfo={this.props.closeInfo}/>;
+                break;
             case('person'):
-                return <PersonInfo personDetails={this.state.data}
+                infoComponent = <PersonInfo personDetails={this.state.data}
                     viewInfo={this.props.viewInfo} closeInfo={this.props.closeInfo}/>;
+                break;
             default: 
                 //If type does not match any of these cases, will need to display an error message.
                 console.log("props.type not recognized in ViewInfo.js");
-                return null; //TODO: display an error message instead!
+                infoComponent = null; //TODO: display an error message instead!
+                break;
         }
+
+        return (<div className="view-info">
+                    <button className="back_button" onClick={() => this.props.closeInfo()}>
+                        <i className="fas fa-angle-left fa-3x"></i>
+                        <span>
+                            Back to {this.props.prevName ? `'${this.props.prevName}'` 
+                            : `results for '${this.props.origSearch}'`}
+                        </span>
+                    </button>
+                    {infoComponent}
+                </div>);
     }
      
 }

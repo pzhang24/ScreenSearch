@@ -1,16 +1,16 @@
 import React from 'react';
 import MainSearchResultMsg from './MainSearchResultMsg';
-import MainPageHeader from './MainPageHeader';
+import MainPageInfo from './MainPageInfo';
 
 class MainHeader extends React.Component {
 
     render() {
     return (
         
-        <div className="main-container header">
+        <div className="main-container main-header">
 
             <MainSearchResultMsg searchResultMsg={this.props.searchResultMsg}/>
-            <MainPageHeader currentPage={this.props.currentPage} totalPages={this.props.totalPages} 
+            <MainPageInfo currentPage={this.props.currentPage} totalPages={this.props.totalPages} 
             pageChange={this.props.pageChange}/>
 
         </div>
