@@ -81,10 +81,10 @@ app.get('/api/:type/:id/credits', (req, res) => {
         });
 })
 
-app.get('/api/person/:id/combined_credits', (req, res) => {
+app.get('/api/person/:id/:path_params', (req, res) => {
     console.log(`Getting person combined credits!`);
 
-    const urlTMDB = `https://api.themoviedb.org/3/person/${req.params.id}/combined_credits` + 
+    const urlTMDB = `https://api.themoviedb.org/3/person/${req.params.id}/${req.params.path_params}` + 
     `?api_key=${apiKey}`;
 
     console.log(urlTMDB);

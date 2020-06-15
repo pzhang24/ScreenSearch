@@ -12,22 +12,36 @@ const PersonInfo = (props) => {
     //TODO: Some of these fields might be null, use helper method to check whether its null or not.
     var infoSummary = createPersonSummary(props.personDetails);
 
-    var [castGallery, setCastGallery] = useState([]);
-    var [crewGallery, setCrewGallery] = useState([]);
+    var [movieCastGallery, setMovieCastGallery] = useState([]);
+    var [movieCrewGallery, setMovieCrewGallery] = useState([]);
+    var [tvCastGallery, setTvCastGallery] = useState([]);
+    var [tvCrewGallery, setTvCrewGallery] = useState([]);
 
     useEffect(() => {
         let mounted = true;
-        axios.get(`/api/person/${props.personDetails.id}/combined_credits`)
+        axios.get(`/api/person/${props.personDetails.id}/movie_credits`)
             .then(res => {
                 if (mounted) {
                     console.log(res);
-                    setCastGallery(processCreditsGallery(res.data.cast, "person", "cast"));
-                    setCrewGallery(processCreditsGallery(res.data.crew, "person", "crew"));
+                    setMovieCastGallery(processCreditsGallery(res.data.cast, "person", "cast"));
+                    setMovieCrewGallery(processCreditsGallery(res.data.crew, "person", "crew"));
                 }
             })
             .catch(err => {
                 console.log(err);
-            });
+        });
+
+        axios.get(`/api/person/${props.personDetails.id}/tv_credits`)
+            .then(res => {
+                if (mounted) {
+                    console.log(res);
+                    setTvCastGallery(processCreditsGallery(res.data.cast, "person", "cast"));
+                    setTvCrewGallery(processCreditsGallery(res.data.crew, "person", "crew"));
+                }
+            })
+            .catch(err => {
+                console.log(err);
+        });
         
         return () => mounted = false;
         
@@ -48,8 +62,10 @@ const PersonInfo = (props) => {
                 <InfoSummary summary={infoSummary}/>
             </div>
 
-            {castGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={castGallery} title="Cast Roles"/>}
-            {crewGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={crewGallery} title="Crew Roles"/>}
+            {movieCastGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={movieCastGallery} title="Movie Cast Roles"/>}
+            {tvCastGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={tvCastGallery} title="TV Cast Roles"/>}
+            {movieCrewGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={movieCrewGallery} title="Movie Crew Roles"/>}
+            {tvCrewGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={tvCrewGallery} title="TV Crew Roles"/>}
 
         </div>
     );

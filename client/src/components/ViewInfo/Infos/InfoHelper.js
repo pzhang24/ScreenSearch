@@ -56,7 +56,7 @@ export function processCreditsGallery(dataArray, type, subtype) {
                         galleryObj.id = castMedia.id;
                         galleryObj.type = castMedia.media_type;
                         galleryObj.img_path = castMedia.poster_path;
-                        galleryObj.name = castMedia.title;
+                        galleryObj.name = castMedia.title || castMedia.name;
                         galleryObj.subtext = castMedia.character;
                         return galleryObj;
                     });
@@ -66,7 +66,7 @@ export function processCreditsGallery(dataArray, type, subtype) {
                         galleryObj.id = crewMedia.id;
                         galleryObj.type = crewMedia.media_type;
                         galleryObj.img_path = crewMedia.poster_path;
-                        galleryObj.name = crewMedia.title;
+                        galleryObj.name = crewMedia.title || crewMedia.name;
                         galleryObj.subtext = crewMedia.job;
                         return galleryObj;
                     });
