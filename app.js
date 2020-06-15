@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 const port = process.env.PORT || 5000;
-const apiKey = process.env.API_KEY;
+const apiKey = process.env.API_KEY || "";
 
 const path = require('path');
 const axios = require('axios');

@@ -20,7 +20,6 @@ import WelcomeMessage from './AlertMessages/WelcomeMessage';
 class App extends React.Component {
   constructor() {
     super();
-    this.apiKey = process.env.REACT_APP_API;
 
     this.state = {
       //results: array of results returned by the database
