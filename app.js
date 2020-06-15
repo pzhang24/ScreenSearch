@@ -33,7 +33,7 @@ app.get('/api/search/:type', (req, res) => {
         })
         .catch(
             (error) => {console.log(error);
-            res.json(error);
+            res.status(400).json(error);
         });
     
 });
@@ -57,7 +57,7 @@ app.get('/api/primary_info/:type/:id', (req, res) => {
         })
         .catch(
             (error) => {console.log(error);
-            res.json(error);
+            res.status(400).json(error);
         });
 })
 
@@ -77,7 +77,7 @@ app.get('/api/:type/:id/credits', (req, res) => {
         })
         .catch(
             (error) => {console.log(error);
-            res.json(error);
+            res.status(400).json(error);
         });
 })
 
@@ -96,7 +96,7 @@ app.get('/api/person/:id/combined_credits', (req, res) => {
         })
         .catch(
             (error) => {console.log(error);
-            res.json(error);
+            res.status(400).json(error);
         });
 })
 
