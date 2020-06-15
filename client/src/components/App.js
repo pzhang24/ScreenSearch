@@ -25,6 +25,7 @@ class App extends React.Component {
       //results: array of results returned by the database
       results: [],
       searchTerm: "", //Invariant: is always a string (cannot be null)
+      savedSearchTerm:"", //Should be set to searchTerm whenever a search is executed
 
       totalResults:0,
 
@@ -74,11 +75,11 @@ class App extends React.Component {
         this.setState({totalResults: response.data.total_results});//get the total number of results
         this.setState({totalPages: response.data.total_pages});//get the total number of pages
 
-        this.setState({searchResultMsg: "Found " + response.data.total_results + 
-        ` result${(response.data.total_results === 1) ? "":"s"} for '` + this.state.searchTerm + "'"});
+        this.setState((prevState) => {return {searchResultMsg: "Found " + response.data.total_results + 
+        ` result${(response.data.total_results === 1) ? "":"s"} for '` + prevState.searchTerm + "'"}});
 
         this.setState({currentPage: 1});
-
+        this.setState((prevState) => {return {savedSearchTerm: prevState.searchTerm}});
         this.setState({viewItemStack: [], searchTerm: ""}); //Clear the viewItemStack and the searchTerm
 
         this.setState({loading: false, error: false});
@@ -99,7 +100,7 @@ class App extends React.Component {
   //Handles page changes
   pageChange = (pageNumber) => {
 
-    const url = `/api/search/multi?query=${this.state.searchTerm}&page=${pageNumber}`;
+    const url = `/api/search/multi?query=${this.state.savedSearchTerm}&page=${pageNumber}`;
 
     this.setState({loading: true});
     Axios.get(url).then(
