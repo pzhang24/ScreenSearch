@@ -5,7 +5,7 @@ const MainPageHeader = (props) => {
 
     return (
         <div className="page-header">
-            {(props.currentPage > 0) ? 
+            {(props.totalPages > 0) ? 
             <h3 className="main-heading">
                 Page {props.currentPage} of {props.totalPages}
              </h3> 
