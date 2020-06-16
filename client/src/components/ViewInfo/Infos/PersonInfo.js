@@ -23,8 +23,8 @@ const PersonInfo = (props) => {
             .then(res => {
                 if (mounted) {
                     console.log(res);
-                    setMovieCastGallery(processCreditsGallery(res.data.cast, "person", "cast"));
-                    setMovieCrewGallery(processCreditsGallery(res.data.crew, "person", "crew"));
+                    setMovieCastGallery(processCreditsGallery(res.data.cast, "person", "cast", "movie"));
+                    setMovieCrewGallery(processCreditsGallery(res.data.crew, "person", "crew", "movie"));
                 }
             })
             .catch(err => {
@@ -35,8 +35,8 @@ const PersonInfo = (props) => {
             .then(res => {
                 if (mounted) {
                     console.log(res);
-                    setTvCastGallery(processCreditsGallery(res.data.cast, "person", "cast"));
-                    setTvCrewGallery(processCreditsGallery(res.data.crew, "person", "crew"));
+                    setTvCastGallery(processCreditsGallery(res.data.cast, "person", "cast", "tv"));
+                    setTvCrewGallery(processCreditsGallery(res.data.crew, "person", "crew", "tv"));
                 }
             })
             .catch(err => {

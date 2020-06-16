@@ -21,8 +21,8 @@ const TVInfo = (props) => {
             .then(res => {
                 if (mounted) {
                     console.log(res);
-                    setCastGallery(processCreditsGallery(res.data.cast, "tv", "cast"));
-                    setCrewGallery(processCreditsGallery(res.data.crew, "tv", "crew"));
+                    setCastGallery(processCreditsGallery(res.data.cast, "tv", "cast", "person"));
+                    setCrewGallery(processCreditsGallery(res.data.crew, "tv", "crew", "person"));
                 }
             })
             .catch(err => {

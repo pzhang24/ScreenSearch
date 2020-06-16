@@ -18,9 +18,10 @@ export function processObjectArray(array, name) {
 
 //type: either "movie", "tv", or "person"
 //subtype: either "cast" or "crew" -> otherwise returns null
+//itemtype: type of item being displayed in the gallery, either "movie", "tv", or "person"
 //RETURN: array of objects with id, type, img_path, name, and subtext fields
-export function processCreditsGallery(dataArray, type, subtype) {
-    switch(type) {
+export function processCreditsGallery(dataArray, infotype, subtype, itemtype) {
+    switch(infotype) {
         case "movie":
         case "tv":
             switch(subtype) {
@@ -28,7 +29,7 @@ export function processCreditsGallery(dataArray, type, subtype) {
                     return dataArray.map((castMember, index) => {
                         var galleryObj = {};
                         galleryObj.id = castMember.id;
-                        galleryObj.type = 'person';
+                        galleryObj.type = itemtype;
                         galleryObj.img_path = castMember.profile_path;
                         galleryObj.name = castMember.name;
                         galleryObj.subtext = castMember.character;
@@ -38,7 +39,7 @@ export function processCreditsGallery(dataArray, type, subtype) {
                     return dataArray.map((crewMember, index) => {
                         var galleryObj = {};
                         galleryObj.id = crewMember.id;
-                        galleryObj.type = 'person';
+                        galleryObj.type = itemtype;
                         galleryObj.img_path = crewMember.profile_path;
                         galleryObj.name = crewMember.name;
                         galleryObj.subtext = crewMember.job;
@@ -54,7 +55,7 @@ export function processCreditsGallery(dataArray, type, subtype) {
                     return dataArray.map((castMedia, index) => {
                         var galleryObj = {};
                         galleryObj.id = castMedia.id;
-                        galleryObj.type = castMedia.media_type;
+                        galleryObj.type = castMedia.media_type || itemtype;
                         galleryObj.img_path = castMedia.poster_path;
                         galleryObj.name = castMedia.title || castMedia.name;
                         galleryObj.subtext = castMedia.character;
@@ -64,7 +65,7 @@ export function processCreditsGallery(dataArray, type, subtype) {
                     return dataArray.map((crewMedia, index) => {
                         var galleryObj = {};
                         galleryObj.id = crewMedia.id;
-                        galleryObj.type = crewMedia.media_type;
+                        galleryObj.type = crewMedia.media_type || itemtype;
                         galleryObj.img_path = crewMedia.poster_path;
                         galleryObj.name = crewMedia.title || crewMedia.name;
                         galleryObj.subtext = crewMedia.job;

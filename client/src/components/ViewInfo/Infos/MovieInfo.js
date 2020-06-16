@@ -23,8 +23,8 @@ const MovieInfo = (props) => {
             .then(res => {
                 if (mounted) {
                     console.log(res);
-                    setCastGallery(processCreditsGallery(res.data.cast, "movie", "cast"));
-                    setCrewGallery(processCreditsGallery(res.data.crew, "movie", "crew"));
+                    setCastGallery(processCreditsGallery(res.data.cast, "movie", "cast", "person"));
+                    setCrewGallery(processCreditsGallery(res.data.crew, "movie", "crew", "person"));
                 }
             })
             .catch(err => {
