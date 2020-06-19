@@ -12,93 +12,31 @@ const axios = require('axios');
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('/api/search/:type', (req, res) => {
-    console.log("Executing a search!")
-    const query = req.query;
+//Should intercept everything under /api
+app.get('/api(/*)', (req, res) => {
+    console.log("Testing!");
+    const url = req.originalUrl.substring(5); //remove '/api/'
+    const routeEnd = (url.indexOf('?') == -1) ? url.length : url.indexOf('?');
+    const route = url.substring(0, routeEnd);
+    const query = (routeEnd == url.length) ? '' : `&${url.substring(routeEnd + 1)}`;
+    console.log(route);
+    console.log(query);
 
-    const urlTMDB = `https://api.themoviedb.org/3/search/${req.params.type}` +
-    `?api_key=${apiKey}` +
-    `${query.language ? `&language=${query.language}` : ``}` + 
-    `&query=${query.query}` + 
-    `${query.page ? `&page=${query.page}` : ``}` + 
-    `${(query.include_adult !== undefined) ? `&include_adult=${query.include_adult}` : ``}` + 
-    `${(query.region ? `&region=${query.region}` : ``)}`;
-
-    console.log(urlTMDB);
+    const urlTMDB = `https://api.themoviedb.org/3/${route}?api_key=${apiKey}${query}`;
+    console.log("urlTMDB is: " + urlTMDB);
 
     axios.get(urlTMDB)
         .then(
-            (response) => {console.log(response.data);
+            (response) => {
             res.json(response.data);
         })
         .catch(
             (error) => {console.log(error);
             res.status(400).json(error);
-        });
-    
+    });
+
 });
 
-//Rename path to '/api/:mediaType/:id/primary_info' (and change this in the front end too!)
-app.get('/api/primary_info/:type/:id', (req, res) => {
-    console.log(`Getting ${req.params.type} info!`);
-
-    const query = req.query;
-    const urlTMDB = `https://api.themoviedb.org/3/${req.params.type}/${req.params.id}` + 
-    `?api_key=${apiKey}` +
-    `${query.language ? `&language=${query.language}` : ``}` + 
-    `${query.append_to_response ? `&append_to_response=${query.append_to_response}` : ``}`;
-
-    console.log(urlTMDB);
-
-    axios.get(urlTMDB)
-        .then(
-            (response) => {console.log(response.data);
-            res.json(response.data);
-        })
-        .catch(
-            (error) => {console.log(error);
-            res.status(400).json(error);
-        });
-})
-
-//can merge this with the other movie and tv deets
-app.get('/api/:type/:id/credits', (req, res) => {
-    console.log(`Getting ${req.params.type} credits!`);
-
-    const urlTMDB = `https://api.themoviedb.org/3/${req.params.type}/${req.params.id}/credits` + 
-    `?api_key=${apiKey}`;
-
-    console.log(urlTMDB);
-
-    axios.get(urlTMDB)
-        .then(
-            (response) => {console.log(response.data);
-            res.json(response.data);
-        })
-        .catch(
-            (error) => {console.log(error);
-            res.status(400).json(error);
-        });
-})
-
-app.get('/api/person/:id/:path_params', (req, res) => {
-    console.log(`Getting person combined credits!`);
-
-    const urlTMDB = `https://api.themoviedb.org/3/person/${req.params.id}/${req.params.path_params}` + 
-    `?api_key=${apiKey}`;
-
-    console.log(urlTMDB);
-
-    axios.get(urlTMDB)
-        .then(
-            (response) => {console.log(response.data);
-            res.json(response.data);
-        })
-        .catch(
-            (error) => {console.log(error);
-            res.status(400).json(error);
-        });
-})
 
 // https://daveceddia.com/deploy-react-express-app-heroku/
 // The "catchall" handler: for any request that doesn't

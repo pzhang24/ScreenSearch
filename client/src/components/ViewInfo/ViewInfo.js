@@ -37,7 +37,7 @@ class ViewInfo extends React.Component {
 
     //Can put this code in constructor instead to reduce performance issues
     componentDidMount() {
-        this.url = `/api/primary_info/${this.props.type}/${this.props.id}`;
+        this.url = `/api/${this.props.type}/${this.props.id}`;
         this.setState({loading: true});
 
         Axios.get(this.url).then(
@@ -61,7 +61,7 @@ class ViewInfo extends React.Component {
 
             this.setState({loading: true});
 
-            this.url = `/api/primary_info/${this.props.type}/${this.props.id}`;
+            this.url = `/api/${this.props.type}/${this.props.id}`;
             Axios.get(this.url).then(
                 (response) => {
                     console.log("Successfully got a response for: " + this.url);
