@@ -1,5 +1,6 @@
 .view-info-overview {
   display: flex;
+  margin-bottom: 2em;
   width: 100%; }
 
 .view-info-summary {
