@@ -9,14 +9,16 @@ const NavTop = (props) => {
     return (
         <div className="nav-top">
             <a className="nav-title" href="#">SCREEN SEARCH</a>
-            <form action="" onSubmit={props.handleSearchSubmit}>
-                <input placeholder="Search movies, shows, people..." 
-                    type="text" onChange={props.handleChange} value={props.searchValue}
-                    disabled={props.disableSearch}></input>
-                <button type="submit" className="nav-search-submit" disabled={props.disableSearch}>
-                    <i className="fa fa-search"></i>
-                </button>
-            </form>
+            <div className="nav-search">
+                <form action="" onSubmit={props.handleSearchSubmit}>
+                    <input className="nav-input" placeholder="Search..." 
+                        type="text" onChange={props.handleChange} value={props.searchValue}
+                        disabled={props.disableSearch}></input>
+                    <button type="submit" className="nav-submit" disabled={props.disableSearch}>
+                        <i className="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
         </div>
     );
 }

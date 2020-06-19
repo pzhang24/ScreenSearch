@@ -2,6 +2,117 @@ $primary_bg_color: #022F40;
 $primary_title_color: rgb(243, 255, 79);
 $input_border: 1px solid grey;
 
+
+.nav-top {
+    display: flex;
+    justify-content: space-between;
+    background-color: $primary_bg_color;
+    //border: 1px solid pink;
+
+    
+}
+
+.nav-title {
+    //border: 1px solid purple;
+    color: $primary_title_color;
+    width: 30%;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 0.6em 0;
+    text-align: left;
+    font-family: 'Amaranth', sans-serif;
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.nav-search {
+    width: 50%;
+    position: relative;
+    
+    .nav-input {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%); 
+        display: inline-block;
+        width: 70%;
+        padding: 0 0.5em;
+        font-size: 1.5em;
+        line-height: 1.5em;
+        font-family: 'Amaranth', sans-serif;
+        font-weight: bold;
+    }
+
+    .nav-submit {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%); 
+        left: 70%;
+        width: 10%;
+        display: inline-block;
+        line-height: 2.55em;
+    }
+
+    .nav-submit:hover {
+        cursor: pointer;
+    }
+}
+
+
+
+@media screen and (max-width:800px) {
+    .nav-top {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .nav-title {
+        //border: 1px solid red;
+        width: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        padding: 0.6em 0;
+        text-align: center;
+        font-family: 'Amaranth', sans-serif;
+        text-decoration: none;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    
+    .nav-search {
+        width: 80%;
+        margin: 0.5em auto;
+        position: relative;
+        //border: 1px solid salmon;
+        
+        .nav-input {
+            position: static;
+            display: inline-block;
+            transform: none;
+            width: 80%;
+            top: 0;
+            left: 0;
+        }
+
+        .nav-submit {
+            position: absolute;
+            transform: none;
+            top: 0;
+            left: 80%;
+            width: 20%;
+            display: inline-block;
+            line-height: 2.55em;
+        }
+}
+
+    
+}
+
+
+
+
+/*
 .nav-top {
     overflow: hidden;
     background-color: $primary_bg_color;
@@ -99,3 +210,4 @@ $input_border: 1px solid grey;
 .nav-search-submit:hover {
     cursor: pointer;
 }
+*/
