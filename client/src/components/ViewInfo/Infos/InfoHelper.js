@@ -19,7 +19,7 @@ export function processObjectArray(array, name) {
 //type: either "movie", "tv", or "person"
 //subtype: either "cast" or "crew" -> otherwise returns null
 //itemtype: type of item being displayed in the gallery, either "movie", "tv", or "person"
-//RETURN: array of objects with id, type, img_path, name, and subtext fields
+//RETURN: array of objects with (not null) id, (not null) type, img_path, (not null) name, and subtext fields
 export function processCreditsGallery(dataArray, infotype, subtype, itemtype) {
     switch(infotype) {
         case "movie":
@@ -31,8 +31,8 @@ export function processCreditsGallery(dataArray, infotype, subtype, itemtype) {
                         galleryObj.id = castMember.id;
                         galleryObj.type = itemtype;
                         galleryObj.img_path = castMember.profile_path;
-                        galleryObj.name = castMember.name;
-                        galleryObj.subtext = castMember.character;
+                        galleryObj.name = castMember.name || "Unknown";
+                        galleryObj.subtext = castMember.character || "N/A";
                         return galleryObj;
                     });
                 case "crew": 
@@ -41,8 +41,8 @@ export function processCreditsGallery(dataArray, infotype, subtype, itemtype) {
                         galleryObj.id = crewMember.id;
                         galleryObj.type = itemtype;
                         galleryObj.img_path = crewMember.profile_path;
-                        galleryObj.name = crewMember.name;
-                        galleryObj.subtext = crewMember.job;
+                        galleryObj.name = crewMember.name || "Unknown";
+                        galleryObj.subtext = crewMember.job || "N/A";
                         return galleryObj;
                     });
                 default: 
@@ -57,8 +57,8 @@ export function processCreditsGallery(dataArray, infotype, subtype, itemtype) {
                         galleryObj.id = castMedia.id;
                         galleryObj.type = castMedia.media_type || itemtype;
                         galleryObj.img_path = castMedia.poster_path;
-                        galleryObj.name = castMedia.title || castMedia.name;
-                        galleryObj.subtext = castMedia.character;
+                        galleryObj.name = castMedia.title || castMedia.name || "Unknown";
+                        galleryObj.subtext = castMedia.character || "N/A";
                         return galleryObj;
                     });
                 case "crew": 
@@ -67,8 +67,8 @@ export function processCreditsGallery(dataArray, infotype, subtype, itemtype) {
                         galleryObj.id = crewMedia.id;
                         galleryObj.type = crewMedia.media_type || itemtype;
                         galleryObj.img_path = crewMedia.poster_path;
-                        galleryObj.name = crewMedia.title || crewMedia.name;
-                        galleryObj.subtext = crewMedia.job;
+                        galleryObj.name = crewMedia.title || crewMedia.name || "Unknown";
+                        galleryObj.subtext = crewMedia.job || "N/A";
                         return galleryObj;
                     });
                 default: 
@@ -80,4 +80,20 @@ export function processCreditsGallery(dataArray, infotype, subtype, itemtype) {
 
     }
 
+}
+
+export function processRecommendedGallery(dataArray, recommendedType) {
+    return dataArray.map((result, index) => {
+        var galleryObj = {};
+        galleryObj.id = result.id;
+        galleryObj.type = recommendedType;
+        galleryObj.img_path = result.poster_path;
+        galleryObj.name = result.title || result.name || "Unknown";
+        
+        const movie_release_year = result.release_date ? result.release_date.slice(0, 4) : null;
+        const tv_first_air_year = result.first_air_date ? result.first_air_date.slice(0, 4) : null;
+        galleryObj.subtext = movie_release_year || `First Aired: ${tv_first_air_year}` || null;
+
+        return galleryObj;
+    })
 }

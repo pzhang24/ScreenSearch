@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import InfoSummary from './InfoComponents/InfoSummary';
 import InfoGallery from './InfoComponents/InfoGallery';
-import {processObjectArray, processCreditsGallery} from './InfoHelper';
+import {processObjectArray, processCreditsGallery, processRecommendedGallery} from './InfoHelper';
 import axios from "axios";
 
 /*Props
@@ -14,6 +14,7 @@ const TVInfo = (props) => {
 
     var [castGallery, setCastGallery] = useState([]);
     var [crewGallery, setCrewGallery] = useState([]);
+    var [recommendedGallery, setRecommendedGallery] = useState([]);
 
     useEffect(() => {
         let mounted = true;
@@ -23,6 +24,17 @@ const TVInfo = (props) => {
                     console.log(res);
                     setCastGallery(processCreditsGallery(res.data.cast, "tv", "cast", "person"));
                     setCrewGallery(processCreditsGallery(res.data.crew, "tv", "crew", "person"));
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        axios.get(`/api/tv/${props.tvDetails.id}/recommendations`)
+            .then(res => {
+                if (mounted) {
+                    console.log(res);
+                    setRecommendedGallery(processRecommendedGallery(res.data.results, "tv"));
                 }
             })
             .catch(err => {
@@ -50,6 +62,7 @@ const TVInfo = (props) => {
 
             {castGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={castGallery} title="Primary Cast"/>}
             {crewGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={crewGallery} title="Crew"/>}
+            {recommendedGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={recommendedGallery} title="Recommendations"/>}
         </div>
     );
 }

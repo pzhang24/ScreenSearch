@@ -134,7 +134,10 @@
   background-color: #04b976;
   color: black;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  cursor: pointer; }
+  .back_button:hover {
+    opacity: 0.8; }
   .back_button i {
     padding: 0 0.5em 0 0; }
 

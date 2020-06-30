@@ -3,7 +3,7 @@ import React from 'react';
 /*
 Props: 
     viewInfo: function to viewInfo when gallery item is clicked
-    cardInfo: info for the card (id, type, img_path, name, subtext)
+    cardInfo: info for the card ((not null) id, (not null) type, img_path, (not null) name, subtext)
 */
 const InfoGalleryCard = (props) => {
     return (
@@ -30,12 +30,15 @@ const InfoGalleryCardText = (props) => {
         <div className="gallery_card_text">
             <p className="gallery_card_maintext">
                 <span onClick={() => {props.viewInfo(props.cardInfo.id, props.cardInfo.type, props.cardInfo.name);}}>
-                    {props.cardInfo.name ? props.cardInfo.name : "Unknown"}
+                    {props.cardInfo.name}
                 </span>
             </p>
-            <p className="gallery_card_subtext">
-                {props.cardInfo.subtext ? props.cardInfo.subtext : "N/A"}
-            </p>
+            
+            {props.cardInfo.subtext && 
+                <p className="gallery_card_subtext">
+                    {props.cardInfo.subtext}
+                </p>
+            }
         </div>
     )
 }
