@@ -15,13 +15,13 @@ const TVInfo = (props) => {
     var [castGallery, setCastGallery] = useState([]);
     var [crewGallery, setCrewGallery] = useState([]);
     var [recommendedGallery, setRecommendedGallery] = useState([]);
+    var [similarGallery, setSimilarGallery] = useState([]);
 
     useEffect(() => {
         let mounted = true;
         axios.get(`/api/tv/${props.tvDetails.id}/credits`)
             .then(res => {
                 if (mounted) {
-                    console.log(res);
                     setCastGallery(processCreditsGallery(res.data.cast, "tv", "cast", "person"));
                     setCrewGallery(processCreditsGallery(res.data.crew, "tv", "crew", "person"));
                 }
@@ -33,8 +33,17 @@ const TVInfo = (props) => {
         axios.get(`/api/tv/${props.tvDetails.id}/recommendations`)
             .then(res => {
                 if (mounted) {
-                    console.log(res);
                     setRecommendedGallery(processRecommendedGallery(res.data.results, "tv"));
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        axios.get(`/api/tv/${props.tvDetails.id}/similar`)
+            .then(res => {
+                if (mounted) {
+                    setSimilarGallery(processRecommendedGallery(res.data.results, "tv"));
                 }
             })
             .catch(err => {
@@ -59,10 +68,11 @@ const TVInfo = (props) => {
                 
                 <InfoSummary summary={infoSummary}/>
             </div>
-
+            
             {castGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={castGallery} title="Primary Cast"/>}
             {crewGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={crewGallery} title="Crew"/>}
-            {recommendedGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={recommendedGallery} title="Recommendations"/>}
+            {similarGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={similarGallery} title="Similar TV Shows"/>}
+            {recommendedGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={recommendedGallery} title="Recommended TV Shows"/>}
         </div>
     );
 }

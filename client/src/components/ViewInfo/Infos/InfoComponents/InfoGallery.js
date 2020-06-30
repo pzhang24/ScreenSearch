@@ -42,6 +42,7 @@ class InfoGallery extends React.Component {
         
         return (
             <div className="gallery">
+                <hr></hr>
                 <h2 className="gallery_title">{this.props.title}</h2>
                 <div className="gallery_container">
                     {/*Display previous button if necessary*/}

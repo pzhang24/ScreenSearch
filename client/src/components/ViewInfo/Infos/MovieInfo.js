@@ -16,6 +16,7 @@ const MovieInfo = (props) => {
     var [castGallery, setCastGallery] = useState([]);
     var [crewGallery, setCrewGallery] = useState([]);
     var [recommendedGallery, setRecommendedGallery] = useState([]);
+    var [similarGallery, setSimilarGallery] = useState([]);
     
     useEffect(() => {
         let mounted = true;
@@ -23,7 +24,6 @@ const MovieInfo = (props) => {
         axios.get(`/api/movie/${props.movieDetails.id}/credits`)
             .then(res => {
                 if (mounted) {
-                    console.log(res);
                     setCastGallery(processCreditsGallery(res.data.cast, "movie", "cast", "person"));
                     setCrewGallery(processCreditsGallery(res.data.crew, "movie", "crew", "person"));
                 }
@@ -35,8 +35,18 @@ const MovieInfo = (props) => {
         axios.get(`/api/movie/${props.movieDetails.id}/recommendations`)
             .then(res => {
                 if (mounted) {
-                    console.log(res);
                     setRecommendedGallery(processRecommendedGallery(res.data.results, "movie"));
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+        axios.get(`/api/movie/${props.movieDetails.id}/similar`)
+            .then(res => {
+                if (mounted) {
+                    console.log(res);
+                    setSimilarGallery(processRecommendedGallery(res.data.results, "movie"));
                 }
             })
             .catch(err => {
@@ -61,10 +71,13 @@ const MovieInfo = (props) => {
                 <InfoSummary summary={infoSummary}/>
                 
             </div>
-
+            
+            
             {castGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={castGallery} title="Cast"/>}
             {crewGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={crewGallery} title="Crew"/>}
-            {recommendedGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={recommendedGallery} title="Recommendations"/>}
+            
+            {similarGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={similarGallery} title="Similar Movies"/>}
+            {recommendedGallery.length > 0 && <InfoGallery viewInfo={props.viewInfo} itemList={recommendedGallery} title="Recommended Movies"/>}
 
         </div>
     );
