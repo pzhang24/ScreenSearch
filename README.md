@@ -1,6 +1,8 @@
 # ScreenSearch
 A web application that allows users to search movies, TV shows, and the people that make it all possible.
 
+Check it out at https://sheltered-citadel-85061.herokuapp.com/ (May need to wait for up to a minute for Heroku dyno's to restart)
+
 
 ## Tech Stack
 - HTML, CSS, and Sass
