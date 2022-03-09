@@ -24,3 +24,9 @@ Here are just some of the things I learned:
 Special thanks to: 
 - Jason Rivera for his wonderful React MovieDB API Youtube tutorial series - this project is an extension of his Movie Finder application.
 - Everyone at TMDB for allowing me to use their amazing API!
+
+## Screenshots
+![screensearch_1](https://user-images.githubusercontent.com/55124377/157555038-103c1cc2-3874-4705-b4f1-f4986e7b9dff.PNG)
+![screensearch_2](https://user-images.githubusercontent.com/55124377/157555650-7ef8f4ab-d0ca-48fc-b2ab-9a65b4e40b08.PNG)
+
+
