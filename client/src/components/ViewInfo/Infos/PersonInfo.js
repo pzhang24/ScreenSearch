@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import InfoSummary from "./InfoComponents/InfoSummary";
 import InfoGallery from "./InfoComponents/InfoGallery";
-import { processObjectArray, processCreditsGallery } from "./InfoHelper";
+import { processCreditsGallery } from "./InfoHelper";
 import axios from "axios";
 
 const baseURL = process.env.REACT_APP_API_BASE_URL;
