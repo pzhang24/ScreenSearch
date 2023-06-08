@@ -1,7 +1,7 @@
 # ScreenSearch
 A web application that allows users to search movies, TV shows, and the people that make it all possible.
 
-Check it out at https://sheltered-citadel-85061.herokuapp.com/ (May need to wait a short period of time for Heroku dynos to restart)
+Check it out at https://screensearch-web-production.up.railway.app/ 
 
 
 ## Tech Stack
@@ -9,7 +9,7 @@ Check it out at https://sheltered-citadel-85061.herokuapp.com/ (May need to wait
 - JavaScript ES6
 - React.js
 - Node.js and Express
-- Heroku for deployment
+- Railway for deployment
 
 ## What I've Learned
 This project taught me A LOT about front-end development and building webpages capable of dynamically displaying information.
